@@ -3,9 +3,7 @@ import React, { Component } from 'react'
 export default class Context extends Component {
   render() {
     return (
-      <div>
-        
-      </div>
+      <div>Context is everything.</div>
     )
   }
 }

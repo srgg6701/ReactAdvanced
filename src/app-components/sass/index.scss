@@ -1,3 +1,6 @@
+
+@import './variables.scss';
+
 body {
   margin: 0;
   padding: 0;
@@ -7,5 +10,11 @@ body {
     'Helvetica Neue', sans-serif;
 }
 
-$primary-color: #525dce;
-$primary-background: #222;
+a {
+  color: $primary-color;
+}
+
+#root{
+  padding: 0 $offset-margin $offset-margin;
+}
+
