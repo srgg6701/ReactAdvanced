@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 
 import Navigation from '../components/Navigation/';
+import Children from '../components/Children/';
+import Context from '../components/Context/';
+import Lazy from '../components/Lazy/';
+import Routing from '../components/Routing/';
 
 const LINKS = [
-  { label: 'Website', to: 'https://www.robinwieruch.de/' },
-  { label: 'Twitter', to: 'https://twitter.com/rwieruch' },
+  { label: 'Home', to: '/' },
+  { label: 'Git', to: 'https://github.com/srgg6701/ReactAdvanced' },
 ];
 
 class App extends Component {
