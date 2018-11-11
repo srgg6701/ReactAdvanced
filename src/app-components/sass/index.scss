@@ -1,20 +1,55 @@
-
 @import './variables.scss';
+html,
+body {
+    height: 100%;
+}
 
 body {
-  margin: 0;
-  padding: 0;
-
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    * {
+        box-sizing: border-box;
+    }
 }
 
 a {
-  color: $primary-color;
+    color: $primary-color;
 }
 
-#root{
-  padding: 0 $offset-margin $offset-margin;
+hr {
+    &.separator {
+        border: none;
+        margin: 10px auto;
+    }
 }
 
+legend {
+    background-color: lightyellow;
+    border: solid 1px darkgoldenrod;
+    padding: 4px 6px;
+}
+
+main {
+    height: 100%;
+    padding: $offset-margin;
+    position: relative;
+    width: 100%;
+    &::after {
+        background-image: url(../../images/black-and-white-sunrise-boat-night-morning-city-334915-pxhere.com.jpg);
+        content: ' ';
+        height: 100%;
+        left: 0;
+        top:0;
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+    }
+}
+
+#root {
+    background: rgba(255, 255, 255, 0.85);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}

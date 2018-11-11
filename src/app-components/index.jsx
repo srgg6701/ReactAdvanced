@@ -28,18 +28,20 @@ class App extends Component {
         <nav>
           <Navigation links={LINKS} />
         </nav>
-        <Route path="/children" component={Children} />
-        <Route path="/context" component={Context} />
-        <Route path="/durty" component={Durty} />
-        <Route path="/lazy" component={Lazy} />
-        <Route path="/puritan" component={Puritan} />
-        <Route path="/routing" component={Routing} />
-        <Route path="/" exact render={()=>(
-          <React.Fragment>
-            <h1>Yo, man!</h1>
-            <p>Homepage is here</p>
-          </React.Fragment>)
-        } />
+        <main>
+          <Route path="/children" component={Children} />
+          <Route path="/context" component={Context} />
+          <Route path="/durty" component={Durty} />
+          <Route path="/lazy" component={Lazy} />
+          <Route path="/puritan" component={Puritan} />
+          <Route path="/routing" component={Routing} />
+          <Route path="/" exact render={() => (
+            <React.Fragment>
+              <h1>Yo, man!</h1>
+              <p>Homepage is here</p>
+            </React.Fragment>)
+          } />
+        </main>
       </React.Fragment>
     );
   }
