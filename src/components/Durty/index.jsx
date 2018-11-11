@@ -34,7 +34,6 @@ export default class Durty extends Component {
     }
 }
 class Transparent extends Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -42,7 +41,6 @@ class Transparent extends Component {
         }
         this.name = "Tarzan";
     }
-
     render() {
         return (
             <React.Fragment>
@@ -59,4 +57,22 @@ class Transparent extends Component {
         )
     }
 }
+function CustomTextInput(props) {
+    return (
+        <div>
+            <input ref={props.inputRef} />
+        </div>
+    );
+}
+class Parent extends React.Component {
+    render() {
+        return (
+            <CustomTextInput
+                inputRef={el => this.inputElement = el}
+            />
+        );
+    }
+}
+
+export { Parent }
 

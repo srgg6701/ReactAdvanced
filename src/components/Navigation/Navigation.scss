@@ -1,7 +1,6 @@
 @import '../../app-components/sass/variables.scss';
-nav{
-  
-}
+nav {}
+
 .Navigation {
     background-color: $primary-background;
     ul {
@@ -12,18 +11,44 @@ nav{
     }
     li {
         display: inline-block;
+        position: relative;
+        section {
+            display: none;
+            min-width: calc(100% + 2px);
+            padding-top: 41px;
+            position: absolute;
+            top: 0;
+            transform: translateX(-1px);
+            z-index: 1;
+        }
+        ul {
+            border: solid 1px;
+            border-top: none;
+            li {
+                display: block;
+            }
+        }
         a {
-            color: white;
+            &:not(.active){
+                color: white;
+            }
             display: block;
             padding: 10px 20px;
             text-decoration: none;
-            &.active,
-            &:hover {
+            &.active{
                 background-color: white;
-                color: black;
             }
-            &:hover:not(.active){
-                background-color: rgba(255,255,255,0.75);
+        }
+        &:hover {
+            background-color: white;
+            section {
+                display: block;
+            }
+            a {
+                color: black;
+                &:not(.active) {
+                    background-color: rgba(255, 255, 255, 0.75);
+                }
             }
         }
     }
