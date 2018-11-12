@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import Deprecated from '../Deprecated/'
 // https://learn-reactjs.ru/core/refs-and-the-dom
 export default class Durty extends Component {
+    firsCell = React.createRef();
     constructor(props) {
         super(props);
         this.textInput = React.createRef();
@@ -11,13 +13,29 @@ export default class Durty extends Component {
     focusTextInput() {
         this.textInput.current.value = 'Yo, man!';
         this.textInput.current.focus();
-        console.log('check this=>', { this: this, value: this.textInput.current.value, transp: this.transp });
+        console.log('check this=>', {
+            this: this,
+            value: this.textInput.current.value,
+            transp: this.transp,
+            firsCell: this.firsCell
+        });
+    }
+
+    componentDidMount() {
+        console.log('block', { block:this.block, this: this });
+        // this._input.focus();
     }
 
     render() {
 
         return (
             <div>
+                <input type="text" ref={this.firsCell} />
+                <div ref={el => this.block = el}>Block here</div>
+                <Deprecated ref="secondBlock" css={{color:'blue'}}>
+                    Deprecated ref here: 
+                    <Deprecated>secondBlock</Deprecated>
+                </Deprecated>
                 <input
                     type="text"
                     ref={this.textInput} />
