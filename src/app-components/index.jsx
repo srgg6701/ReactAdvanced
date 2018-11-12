@@ -9,6 +9,7 @@ import Durty from '../components/Durty/';
 import Lazy from '../components/Lazy/';
 import { Parent } from '../components/Durty/';
 import Puritan from '../components/Puritan/';
+import Refs from '../components/Refs/';
 import Routing from '../components/Routing/';
 
 const LINKS = [
@@ -22,6 +23,7 @@ const LINKS = [
         { label: 'Parent', to: '/parent' }
       ] 
   },
+  { label: 'Refs', to: '/refs' },
   { label: 'Routing', to: '/routing' },
   { label: 'Git', to: 'https://github.com/srgg6701/ReactAdvanced' },
 ];
@@ -40,6 +42,7 @@ class App extends Component {
           <Route path="/lazy" component={Lazy} />
           <Route path="/puritan" exact component={Puritan} />
           <Route path="/puritan/parent" component={Parent} />
+          <Route path="/refs" component={Refs} />
           <Route path="/routing" component={Routing} />
           <Route path="/" exact render={() => (
             <React.Fragment>
