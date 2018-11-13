@@ -9,52 +9,62 @@
     li {
         display: inline-block;
         position: relative;
-        ul {
-            border-top: none;
-            display: none;
-            li {
-                display: block;
-            }
-        }
-        a {
-            color: white;
-            display: block;
-            padding: 10px 20px;
-            position: relative;
-            text-decoration: none;
-            z-index: 2;
-            &.active {
-                background-color: white;
-                color: $primary-background;
-            }
-            &:hover {
-                &+section>ul {
-                    display: block;
-                }
-            }
-        }
         &:hover {
             background-color: $menu-hover-background-color;
             a {
                 color: $primary-background;
             }
         }
-        section {
-            min-width: 100%;
-            min-height: 100%;
-            padding-top: 41px;
-            position: absolute;
-            top: 0;
-            z-index: 1;
-        }
+    }
+}
+
+a {
+    .Navigation &.active {
+        background-color: white;
+        color: $primary-background;
+    }
+    .Navigation li & {
+        color: white;
+        display: block;
+        padding: 10px 20px;
+        position: relative;
+        text-decoration: none;
+        z-index: 2;
+    }
+}
+
+li {
+    .Navigation li & {
+        display: block;
     }
 }
 
 ul {
+    .Navigation li & {
+        border-top: none;
+        display: none;
+    }
     .Navigation section:hover &,
     .Navigation li:hover &,
     .Navigation li a:hover & {
         background-color: $menu-hover-background-color;
         display: block;
+        li {
+            background-color: $menu-hover-background-color;
+        }
+    }
+    .Navigation a:hover+section>& {
+        display: block;
+    }
+}
+
+section {
+    .Navigation li & {
+        min-width: 100%;
+        min-height: 100%;
+        padding-top: 41px;
+        position: absolute;
+        top: 0;
+        z-index: 1;
     }
 }

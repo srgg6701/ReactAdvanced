@@ -5,9 +5,9 @@ import './sass/index.scss';
 import Navigation from '../components/Navigation/';
 import Children from '../components/Children/';
 import Context from '../components/Context/';
-import Durty from '../components/Durty/';
+import Lifecycle from '../components/Lifecycle/';
 import Lazy from '../components/Lazy/';
-import { Inner } from '../components/Durty/';
+import { Inner } from '../components/Lifecycle/';
 import Puritan from '../components/Puritan/';
 import Refs from '../components/Refs/';
 import Routing from '../components/Routing/';
@@ -16,8 +16,8 @@ const LINKS = [
   { label: 'Home', to: '/', exact: true },
   { label: 'Children', to: '/children' },
   { label: 'Context', to: '/context' },
-  { label: 'Durty', to: '/durty' },
   { label: 'Lazy', to: '/lazy' },
+  { label: 'Lifecycle', to: '/lifecycle' },
   { label: 'Puritan', to: '/puritan',
       submenu: [
         { label: 'Inner', to: '/inner' }
@@ -38,8 +38,8 @@ class App extends Component {
         <main>
           <Route path="/children" component={Children} />
           <Route path="/context" component={Context} />
-          <Route path="/durty" component={Durty} />
           <Route path="/lazy" component={Lazy} />
+          <Route path="/lifecycle" component={Lifecycle} />
           <Route path="/puritan" exact component={Puritan} />
           <Route path="/puritan/inner" component={Inner} />
           <Route path="/refs" component={Refs} />

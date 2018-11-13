@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Transparent from '../Durty/'
+import Transparent from '../Lifecycle/'
 import Fieldset from '../Fieldset/'
 
 export default class Refs extends PureComponent {

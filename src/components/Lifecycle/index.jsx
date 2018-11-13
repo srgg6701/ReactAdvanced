@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Fieldset from '../Fieldset/'
 // https://learn-reactjs.ru/core/refs-and-the-dom
-export default class Durty extends Component {
+export default class Lifecycle extends Component {
     constructor(props) {
         super(props)
         this.state = {
