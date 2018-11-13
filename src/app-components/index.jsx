@@ -41,7 +41,7 @@ class App extends Component {
           <Route path="/durty" component={Durty} />
           <Route path="/lazy" component={Lazy} />
           <Route path="/puritan" exact component={Puritan} />
-          <Route path="/puritan/parent" component={Inner} />
+          <Route path="/puritan/inner" component={Inner} />
           <Route path="/refs" component={Refs} />
           <Route path="/routing" component={Routing} />
           <Route path="/" exact render={() => (
