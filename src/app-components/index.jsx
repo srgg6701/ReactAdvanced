@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './sass/index.scss';
+import './sass/forms.scss';
 
 import Navigation from '../components/Navigation/';
 import Children from '../components/Children/';
