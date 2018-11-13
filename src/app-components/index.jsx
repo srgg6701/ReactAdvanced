@@ -7,7 +7,7 @@ import Children from '../components/Children/';
 import Context from '../components/Context/';
 import Durty from '../components/Durty/';
 import Lazy from '../components/Lazy/';
-import { Parent } from '../components/Durty/';
+import { Inner } from '../components/Durty/';
 import Puritan from '../components/Puritan/';
 import Refs from '../components/Refs/';
 import Routing from '../components/Routing/';
@@ -20,12 +20,12 @@ const LINKS = [
   { label: 'Lazy', to: '/lazy' },
   { label: 'Puritan', to: '/puritan',
       submenu: [
-        { label: 'Parent', to: '/parent' }
+        { label: 'Inner', to: '/inner' }
       ] 
   },
   { label: 'Refs', to: '/refs' },
   { label: 'Routing', to: '/routing' },
-  { label: 'Git', to: 'https://github.com/srgg6701/ReactAdvanced' },
+  { label: '↑ GitHub', to: 'https://github.com/srgg6701/ReactAdvanced' },
 ];
 
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
           <Route path="/durty" component={Durty} />
           <Route path="/lazy" component={Lazy} />
           <Route path="/puritan" exact component={Puritan} />
-          <Route path="/puritan/parent" component={Parent} />
+          <Route path="/puritan/parent" component={Inner} />
           <Route path="/refs" component={Refs} />
           <Route path="/routing" component={Routing} />
           <Route path="/" exact render={() => (

@@ -14,7 +14,9 @@ body {
 }
 
 a {
-    color: $primary-color;
+    &:not(.active){
+        color: $primary-color;
+    }
 }
 
 code {
