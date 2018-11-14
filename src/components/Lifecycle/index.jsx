@@ -1,24 +1,8 @@
-import React, { Component } from 'react'
-import Fieldset from '../Fieldset/'
-
-function output(bgcolor, text1, text2, ob = null) {
-    console.groupCollapsed(`%c${text1} %c ${text2}`, `background-color: ${bgcolor}`, 'background-color: transparent');
-    if (ob) console.log(ob);
-    console.groupEnd();
-}
-
-const wrCss = {
-    display: 'flex',
-    /* flexDirection: 'column', */
-    float: 'right',
-    marginLeft: 40
-},
-    formCss = {
-        display: 'flex',
-        flexDirection: 'column',
-        marginLeft: 40,
-        marginTop: 20
-    }
+import React, { Component/* , PureComponent */, Fragment } from 'react'
+import output, { wrCss, formCss } from '../../app-components/utils'
+import FieldsetReact from '../Fieldset/'
+import TableCommon from '../Tables/TableCommon'
+import TablePure from '../Tables/TablePure'
 
 // https://learn-reactjs.ru/core/refs-and-the-dom
 export default class Lifecycle extends Component {
@@ -54,6 +38,7 @@ export default class Lifecycle extends Component {
 
     /* shouldComponentUpdate(nextProps, nextState) {
         output('lime', '4', 'shouldComponentUpdate: nextProps, nextState =>', nextProps, nextState);
+        return false;
     } */
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -80,37 +65,41 @@ export default class Lifecycle extends Component {
         output('yellow', '7', 'changeState', {
             this: this,
             state_prop: this.refs.state_prop.value,
-            state_val: this.refs.state_val.value
+            state_val: this.refs.state_val.value,
+            state_contents: this.refs.state_contents
         });
         this.setState({
-            [this.refs.state_prop.value]: this.refs.state_val.value
+            [this.refs.state_prop.value]: this.refs.state_val.value,
+            pureContents: this.refs.state_contents.value
         });
     }
 
     render() {
+        console.log('%cRendered!', 'color:orangered');
         return (
-            <React.Fragment>
+            <Fragment>
                 <div style={wrCss}>
                     <section>
-                        <TableCommon contents={this.outputState()} />
-                        <TablePure contents='Fake contents for Pure component' />
+                        <TableCommon word={this.state.state_val} contents={this.outputState()} />
+                        <TablePure contents={ this.state.pureContents ||'Fake contents for Pure component' } />
                     </section>
                     <section style={formCss}>
                         <input type="text" ref="state_prop" />
                         <input type="text" ref="state_val" />
+                        <input type="text" ref="state_contents" />
                         <button onClick={this.changeState}>Add</button>
                     </section>
                 </div>
                 <h4>State here</h4>
-                <a href="javascript:void(0)" onClick={() => this.setState({
+                <button onClick={() => this.setState({
                     flds: ! this.state.flds
                 })}>{
                     this.state.flds ? 'Hide rest' : 'Show rest'
-                }</a>
-                {this.state.flds && <Flds>
+                }</button>
+                {this.state.flds && <Fieldset>
                     <section>Not quite sure, btw, what's going to be here...</section>
-                </Flds>}
-            </React.Fragment>
+                </Fieldset>}
+            </Fragment>
         )
     }
 }
@@ -121,7 +110,7 @@ function CustomTextInput(props) {
         </div>
     );
 }
-class Inner extends React.Component {
+class Inner extends Component {
     render() {
         return (
             <CustomTextInput inputRef={el => this.inputElement = el}
@@ -132,33 +121,11 @@ class Inner extends React.Component {
 
 export { Inner }
 
-class TableCommon extends React.Component {
-    componentWillReceiveProps(nextProps) {
-        output('rgb(100, 255, 255)', '[TableCommon]', 'componentWillReceiveProps, nextProps =>', nextProps);
-    }
-    render() {
-        console.log('%c=| TableCommon is updated |=', 'color:violet');
-        return (
-            <table><tbody>{this.props.contents}</tbody></table>
-        );
-    }
-}
-
-class TablePure extends React.PureComponent {
-    componentWillReceiveProps(nextProps) {
-        output('rgb(255, 255, 100)', '[TablePure]', 'componentWillReceiveProps, nextProps =>', nextProps);
-    }
-    render() {
-        console.log('%c=| TablePure is updated |=', 'color:rebeccapurple');
-        return this.props.contents
-    }
-}
-
-class Flds extends React.Component {
+class Fieldset extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <Fragment>
                 <hr className="separator" />
                 <fieldset style={{ backgroundColor: '#eee' }}>
                     <legend>I am small and awesome</legend>
@@ -168,11 +135,11 @@ class Flds extends React.Component {
                         {this.props.children}
                     </fieldset>
                 </fieldset>
-                <Fieldset ref="secondBlock" css={{ color: 'blue' }}>
+                <FieldsetReact ref="secondBlock" css={{ color: 'blue' }}>
                     Fieldset ref here:
-                    <Fieldset>secondBlock</Fieldset>
-                </Fieldset>
-            </React.Fragment>
+                    <FieldsetReact>secondBlock</FieldsetReact>
+                </FieldsetReact>
+            </Fragment>
         )
     }
 } 
