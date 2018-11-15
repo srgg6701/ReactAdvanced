@@ -7,14 +7,17 @@ import LINKS from './links';
 import Navigation from '../components/Navigation/';
 import Children from '../components/Children/';
 import Context from '../components/Context/';
-//import HOCs from '../HOCs/';
-import HOC from '../components/HOCs/default';
+// FieldsetHOCPure
+import { FieldsetHOCPure } from '../components/HOCs/';
+import Textual from '../components/Context/Textual';
 import Lifecycle from '../components/Lifecycle/';
 import Lazy from '../components/Lazy/';
 import { Inner } from '../components/Lifecycle/';
 import Puritan from '../components/Puritan/';
 import Refs from '../components/Refs/';
 import Routing from '../components/Routing/';
+
+const HOC = FieldsetHOCPure(Textual, {name: "Strange fruit"}, <p>Yo! Children here.</p>);
 
 class App extends Component {
   render() {

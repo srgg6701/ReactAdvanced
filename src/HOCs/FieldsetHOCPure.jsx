@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// exports HOC function
 const FieldsetHOCPure = (ChildComponent, props, children) => {
     class Fieldset extends Component {
         render() {
@@ -13,4 +14,4 @@ const FieldsetHOCPure = (ChildComponent, props, children) => {
     return Fieldset;
 }
 
-export default FieldsetHOCPure;
+export { FieldsetHOCPure };

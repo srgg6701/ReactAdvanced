@@ -1,19 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import Textual from '../Context/Textual'
 // import PropTypes from 'prop-types'
-
 import FieldsetHOCPure from '../../HOCs/FieldsetHOCPure'
-//import Fieldset from '../Fieldset';
 //<ChildComponent {...props}>{ children }</ChildComponent>
-class Textual extends Component {
-    render() {
-        return (
-            <Fragment>
-                <div>My name is { this.props.name }</div>
-                {this.props.children}
-            </Fragment>
-        )
-    }
-}
-
+// exports component, wrappet in HOC
 export default FieldsetHOCPure(Textual, {name: "Strange fruit"}, <p>Yo! Children here.</p>);
-
