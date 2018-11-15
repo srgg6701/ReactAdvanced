@@ -5,12 +5,9 @@ export default (bgcolor, text1, text2, ob = null) => {
 }
 
 const wrCss = {
-        display: 'flex',
-        float: 'right',
         maxWidth: '100%' 
     },
     formCss = {
-        display: 'flex',
         flexDirection: 'column',
         marginLeft: 40
     }

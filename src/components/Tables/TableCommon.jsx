@@ -6,12 +6,12 @@ export default class TableCommon extends React.Component {
     state = {
         mood: 'Strange'
     }
-    /* shouldComponentUpdate(nextProps, nextState) {
-        return false;
-    } */
     /* static getDerivedStateFromProps(props, state){
         output('goldenrod', '01', 'getDerivedStateFromProps: props, state =>', {props, state} );
         return null;
+    } */
+    /* shouldComponentUpdate(nextProps, nextState) {
+        return false;
     } */
     /* componentDidUpdate(prevProps, prevState, snapshot){
         output('lime', '02', 'componentDidUpdate: props, state =>', {prevProps, prevState, currentProps: this.props, currentState:this.state, snapshot} );
@@ -22,9 +22,5 @@ export default class TableCommon extends React.Component {
             <table><tbody>{this.props.contents}</tbody></table>
         );
     }
-    /* componentWillReceiveProps(nextProps) {
-        output('rgb(100, 255, 255)', '[TableCommon]', 'componentWillReceiveProps, nextProps =>', nextProps);
-    } */
-
 }
 

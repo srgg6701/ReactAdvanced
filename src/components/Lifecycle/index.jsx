@@ -1,6 +1,8 @@
 import React, { Component/* , PureComponent */, Fragment } from 'react'
 import output, { wrCss, formCss } from '../../app-components/utils'
 import FieldsetReact from '../Fieldset/'
+import HOCCommon from '../../HOCs/FieldsetHOCCommon'
+import HOCPure from '../../HOCs/FieldsetHOCPure'
 import TableCommon from '../Tables/TableCommon'
 import TablePure from '../Tables/TablePure'
 
@@ -10,31 +12,43 @@ export default class Lifecycle extends Component {
         super(props)
         this.state = {
             address: 'Unknown',
-            name: 'Nameless'
+            name: 'Nameless',
+            state_val: 'No any state value yet...' 
         }
-        this.name = "Tarzan";
-        output('lightskyblue', '1', 'constructor');
+        // this.name = "LifecycleComponent";
+        // output('lightskyblue', '1', 'constructor');
+        this.FieldsetHOCCommon = HOCCommon(TableCommon, {
+            word: this.state.state_val,
+            // passes current props
+            contents: this.outputState()
+        })
+        this.FieldsetHOCPure = HOCPure(TablePure, {
+            legend: 'Puritan here',
+            contents: this.state.pureContents ||'Fake contents for Pure component'
+        })
+        /*  it is useless re-define a component in componentDidMount as it
+            is not going to renender until state on prop is changed
+        */
+        // this.FieldsetHOC2 = () => <section>Nothing yet</section>;
     }
-
     stateHTML = []
-    
     /* static getDerivedStateFromProps(props, state){
         output('pink', '2', 'getDerivedStateFromProps: props, state =>', {props, state} );
         return null;
     } */
-
     componentDidMount() {
         output('lightgreen', '3', 'componentDidMount');
+        // this won't work as was intended. See note in constructor 
+        /* this.FieldsetHOC2 = HOCCommon(TableCommon, {
+            contents: this.state.pureContents ||'Fake contents for a canny component'
+        }); */
     }
-
     componentDidUpdate(prevProps, prevState, snapshot) {
         output('#ccc', '5', 'componentDidUpdate: prevProps, prevState, snapshot =>', { prevProps, prevState, snapshot });
     }
-
     componentWillUnmount() {
         output('orange', '6', 'componentWillUnmount');
     }
-
     outputState = () => {
         this.stateHTML = [];
         Object.entries(this.state).forEach((entry, index) => {
@@ -46,7 +60,6 @@ export default class Lifecycle extends Component {
         });
         return this.stateHTML;
     }
-
     changeState = () => {
         output('yellow', '7', 'changeState', {
             this: this,
@@ -64,24 +77,36 @@ export default class Lifecycle extends Component {
         console.log('%cRendered!', 'color:orangered');
         return (
             <Fragment>
-                <div style={wrCss}>
+                <div className="float-right display-flex" style={wrCss}>
                     <section>
-                        <TableCommon word={this.state.state_val} contents={this.outputState()} />
-                        <TablePure contents={ this.state.pureContents ||'Fake contents for Pure component' } />
+                        {/* 
+                            see child component passed to HOC;
+                            notice, that props for it are passed via HOC argument
+                        */}
+                        <this.FieldsetHOCCommon legend="Common. Current parent state" />
+                        <br/>
+                        <this.FieldsetHOCPure />
+                        {this.FieldsetHOC2 && <this.FieldsetHOC2 />}
+                        {/* <TableCommon word={this.state.state_val} contents={this.outputState()} />
+                            <TablePure contents={ this.state.pureContents ||'Fake contents for Pure component' } /> 
+                        */}
                     </section>
-                    <section style={formCss}>
-                        <input type="text" ref="state_prop" />
-                        <input type="text" ref="state_val" />
-                        <input type="text" ref="state_contents" />
+                    {/* Block for changing state */}
+                    <section className="display-flex" style={formCss}>
+                        <input type="text" ref="state_prop" placeholder="new state name" />
+                        <input type="text" ref="state_val" placeholder="new state value" />
+                        <input type="text" ref="state_contents" placeholder="state.PureContents value" />
                         <button onClick={this.changeState}>Add</button>
                     </section>
                 </div>
-                <h4>State here</h4>
-                <button onClick={() => this.setState({
-                    flds: ! this.state.flds
-                })}>{
-                    this.state.flds ? 'Hide rest' : 'Show rest'
-                }</button>
+                <div className="float-left">
+                    <h4>State here</h4>
+                    <button onClick={() => this.setState({
+                        flds: !this.state.flds
+                    })}>{
+                            this.state.flds ? 'Hide rest' : 'Show rest'
+                        }</button>
+                </div>
                 {this.state.flds && <Fieldset>
                     <section>Not quite sure, btw, what's going to be here...</section>
                 </Fieldset>}

@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 // exports HOC function
 const FieldsetHOCPure = (ChildComponent, props, children) => {
-    class Fieldset extends Component {
+    class Fieldset extends PureComponent {
         render() {
             console.log('HOC wrapper this =>', this);
             return (

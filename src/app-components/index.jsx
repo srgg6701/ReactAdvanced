@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './sass/index.scss';
 import './sass/forms.scss';
+import './sass/classes.scss';
 import LINKS from './links';
 import Navigation from '../components/Navigation/';
 import Children from '../components/Children/';
@@ -22,7 +23,7 @@ class App extends Component {
     legendHOC: "Rendered HOC"
   }
 
-  renderHOC = arg => <HOC legend={this.state[arg]} />
+  // renderHOC = arg => <HOC legend={this.state[arg]} />
 
   render() {
 
@@ -51,7 +52,8 @@ class App extends Component {
             <Route path="/" render={() => (
               <React.Fragment>
                 <h1>Yo, man!</h1>
-                <p>Homepage is here</p>
+                <p>Homepage here. Do you like me indeed?</p>
+                <p>Live example is there: <a href="https://codesandbox.io/s/n08lr90210">https://codesandbox.io/s/n08lr90210</a></p>
               </React.Fragment>)
             } />
           </Switch>

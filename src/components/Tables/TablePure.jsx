@@ -16,7 +16,7 @@ export default class TablePure extends PureComponent {
     }
     render() {
         console.log('%c=| TablePure is updated |=', 'color:rebeccapurple');
-        return this.props.contents
+        return this.props.contents || 'You have forgetten to put props.contents there'
     }
     
     /* componentWillReceiveProps(nextProps) {
