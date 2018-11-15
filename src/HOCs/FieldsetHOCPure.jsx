@@ -14,4 +14,4 @@ const FieldsetHOCPure = (ChildComponent, props, children) => {
     return Fieldset;
 }
 
-export { FieldsetHOCPure };
+export default FieldsetHOCPure

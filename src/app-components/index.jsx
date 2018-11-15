@@ -8,8 +8,8 @@ import Navigation from '../components/Navigation/';
 import Children from '../components/Children/';
 import Context from '../components/Context/';
 // FieldsetHOCPure
-import { FieldsetHOCPure } from '../components/HOCs/';
-import Textual from '../components/Context/Textual';
+import { FieldsetHOCPureCalled } from '../components/HOCs/';
+//import Textual from '../components/Context/Textual';
 import Lifecycle from '../components/Lifecycle/';
 import Lazy from '../components/Lazy/';
 import { Inner } from '../components/Lifecycle/';
@@ -17,7 +17,7 @@ import Puritan from '../components/Puritan/';
 import Refs from '../components/Refs/';
 import Routing from '../components/Routing/';
 
-const HOC = FieldsetHOCPure(Textual, {name: "Strange fruit"}, <p>Yo! Children here.</p>);
+const HOC = FieldsetHOCPureCalled;
 
 class App extends Component {
   render() {

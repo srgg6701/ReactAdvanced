@@ -1,2 +1,2 @@
 // export HOC function
-export { FieldsetHOCPure } from '../../HOCs/FieldsetHOCPure'
+export { FieldsetHOCPureCalled } from '../HOCs/default'
