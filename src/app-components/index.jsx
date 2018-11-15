@@ -32,6 +32,7 @@ class App extends Component {
           <Navigation links={LINKS} />
         </nav>
         <main>
+          <Route path="/children/hello" render={() => (<h1>Yo, i.e. -- Hello!</h1>)} />
           <Route path="/children" component={Children} />
           <Route path="/context" component={Context} />
           <Route path="/lazy" component={Lazy} />
