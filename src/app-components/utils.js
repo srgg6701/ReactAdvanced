@@ -12,8 +12,7 @@ const wrCss = {
     formCss = {
         display: 'flex',
         flexDirection: 'column',
-        marginLeft: 40,
-        marginTop: 20
+        marginLeft: 40
     }
 
 export { wrCss, formCss }
