@@ -38,8 +38,9 @@ class App extends Component {
             <Route path="/context" component={Context} />
             <Route path="/lazy" component={Lazy} />
             <Route path="/HOCs" render={props => {
-              //  
-              return <HOC myprops={props} />
+              // pass props to the component (HOC wrapper)
+              // they are Route props: {history, match, location}
+              return <HOC {...props} />
             }
             } />
             <Route path="/lifecycle" component={Lifecycle} />
