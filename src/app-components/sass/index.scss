@@ -14,7 +14,22 @@ body {
 }
 
 a {
-    color: $primary-color;
+    &:not(.active){
+        color: $primary-color;
+    }
+}
+
+code {
+    &.inline{
+        background-color: #bbb;
+        display: inline-block;
+        padding: 0 4px;
+    }
+    >section {
+        background: black;
+        margin: 10px -10px -8px;
+        padding: 0 0 18px;
+    }
 }
 
 hr {
@@ -40,11 +55,17 @@ main {
         content: ' ';
         height: 100%;
         left: 0;
-        top:0;
+        top: 0;
         position: absolute;
         width: 100%;
         z-index: -1;
     }
+}
+
+pre {
+    padding: 10px;
+    background: #333;
+    color: #eee;
 }
 
 #root {
