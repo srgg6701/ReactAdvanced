@@ -8,29 +8,27 @@ import TablePure from '../Tables/TablePure'
 
 // https://learn-reactjs.ru/core/refs-and-the-dom
 export default class Lifecycle extends Component {
-    stateHTML = []
-    state = {
+    
+    tableData = {
         address: 'Unknown',
         name: 'Nameless',
-        state_val: 'No any state value yet...' 
+        state_val: 'No any state value yet...',
+        pureContents: ''
+    }
+    state = {
+        html: <tr><td>Empty...</td></tr> 
     }
     constructor(props) {
         super(props)
         // this.name = "LifecycleComponent";
         this.FieldsetHOCCommon = HOCCommon(TableCommon, {
-            word: this.state.state_val/* ,
-            // passes current props
-            contents: this.outputState() */
+            word: this.tableData.state_val/* , contents: this.outputState() */
         })
         this.FieldsetHOCPure = HOCPure(TablePure, {
             legend: 'Puritan here',
-            contents: this.state.pureContents ||'Fake contents for Pure component'
+            contents: this.tableData.pureContents ||'Fake contents for Pure component'
         })
-        /*  it is useless re-define a component in componentDidMount as it
-            is not going to renender until state on prop is changed
-        */
-        // this.FieldsetHOC2 = () => <section>Nothing yet</section>;
-        this.outputState();
+        //this.outputState();
         output('lightskyblue', '1', 'constructor', this);
     }
     /* static getDerivedStateFromProps(props, state){
@@ -38,11 +36,8 @@ export default class Lifecycle extends Component {
         return null;
     } */
     componentDidMount() {
-        //output('lightgreen', '3', 'componentDidMount');
-        // this won't work as was intended. See note in constructor 
-        /* this.FieldsetHOC2 = HOCCommon(TableCommon, {
-            contents: this.state.pureContents ||'Fake contents for a canny component'
-        }); */
+        output('lightgreen', '3', 'componentDidMount');
+        this.changeState(true);
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         output('#ccc', '5', 'componentDidUpdate: prevProps, prevState, snapshot =>', { prevProps, prevState, snapshot });
@@ -51,25 +46,32 @@ export default class Lifecycle extends Component {
         output('orange', '6', 'componentWillUnmount');
     } */
     outputState = () => {
-        this.stateHTML = [];
-        Object.entries(this.state).forEach((entry, index) => {
-            this.stateHTML.push(
+        //this.stateHTML = [];
+        output('orange', '6', 'outputState');
+        return Object.entries(this.tableData).map((entry, index) => (
                 <tr key={index}>
                     <td>{entry[0]}</td>
                     <td>{entry[1]}</td>
                 </tr>)
-        });
-        output('orange', '6', 'outputState, this.stateHTML =>', this.stateHTML);
-        return this.stateHTML;
+        );
     }
-    changeState = () => {
-        this.setState(prevState => ({
+    changeState = init => {
+        if (init!==true) {
+            // add new property to tableData
+            this.tableData[this.refs.state_prop.value] = this.refs.state_val.value;
+            // change value of pureContents
+            this.tableData.pureContents = this.refs.state_contents.value;
+            // setState[, render]
+        }
+        this.setState(prevState =>({
+            html: this.outputState()
+        }), () => output('yellow', '7', 'changeState'));
+        /* this.setState(prevState => ({
             [this.refs.state_prop.value]: this.refs.state_val.value,
             pureContents: this.refs.state_contents.value
         }), () => {
             this.outputState();
-            output('yellow', '7', 'changeState');
-        });
+        }); */
     }
 
     render() {
@@ -82,10 +84,9 @@ export default class Lifecycle extends Component {
                             see child component passed to HOC;
                             notice, that props for it are passed via HOC argument
                         */}
-                        <this.FieldsetHOCCommon contents={this.stateHTML} legend="Common. Current parent state" />
+                        <this.FieldsetHOCCommon contents={this.state.html} legend="Common. Current parent state" />
                         <br/>
                         <this.FieldsetHOCPure />
-                        {this.FieldsetHOC2 && <this.FieldsetHOC2 />}
                         {/* <TableCommon word={this.state.state_val} contents={this.outputState()} />
                             <TablePure contents={ this.state.pureContents ||'Fake contents for Pure component' } /> 
                         */}
