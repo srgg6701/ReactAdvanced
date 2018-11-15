@@ -37,9 +37,9 @@ class App extends Component {
             <Route path="/children" component={Children} />
             <Route path="/context" component={Context} />
             <Route path="/lazy" component={Lazy} />
-            <Route path="/HOCs" render={props => {
-              console.log('%cprops', 'background:pink', props);
-              return <HOC {...props} />
+            <Route path="/HOCs" render={() => {
+              // no any props inside: 
+              return <HOC />
             }
             } />
             <Route path="/lifecycle" component={Lifecycle} />
