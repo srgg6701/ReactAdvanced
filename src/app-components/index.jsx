@@ -21,8 +21,11 @@ class App extends Component {
   state = {
     legendHOC: "Rendered HOC"
   }
+
+  renderHOC = arg => <HOC legend={this.state[arg]} />
+
   render() {
-    
+
     return (
       <React.Fragment>
         <nav>
@@ -32,10 +35,7 @@ class App extends Component {
           <Route path="/children" component={Children} />
           <Route path="/context" component={Context} />
           <Route path="/lazy" component={Lazy} />
-          <Route path="/HOCs" render={function(args){
-            console.log('HOC, an anonymous function, this =>', {this:this, args:args});
-            return <HOC legend={this.state.legendHOC} />
-          }} />
+          <Route path="/HOCs" render={() => this.renderHOC('legendHOC')} />
           <Route path="/lifecycle" component={Lifecycle} />
           <Route path="/puritan" exact component={Puritan} />
           <Route path="/puritan/inner" component={Inner} />
