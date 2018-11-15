@@ -2,17 +2,15 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './sass/index.scss';
 import './sass/forms.scss';
-
 import LINKS from './links';
 import Navigation from '../components/Navigation/';
 import Children from '../components/Children/';
 import Context from '../components/Context/';
-// FieldsetHOCPure
+// index -> default -> FieldsetHOCPureCalled -> FieldsetHOCPure
 import { FieldsetHOCPureCalled } from '../components/HOCs/';
 //import Textual from '../components/Context/Textual';
-import Lifecycle from '../components/Lifecycle/';
+import Lifecycle, { Inner } from '../components/Lifecycle/';
 import Lazy from '../components/Lazy/';
-import { Inner } from '../components/Lifecycle/';
 import Puritan from '../components/Puritan/';
 import Refs from '../components/Refs/';
 import Routing from '../components/Routing/';
@@ -20,7 +18,11 @@ import Routing from '../components/Routing/';
 const HOC = FieldsetHOCPureCalled;
 
 class App extends Component {
+  state = {
+    legendHOC: "Rendered HOC"
+  }
   render() {
+    
     return (
       <React.Fragment>
         <nav>
@@ -30,7 +32,10 @@ class App extends Component {
           <Route path="/children" component={Children} />
           <Route path="/context" component={Context} />
           <Route path="/lazy" component={Lazy} />
-          <Route path="/HOCs" render={() => <HOC legend="Rendered HOC" />} />
+          <Route path="/HOCs" render={() => {
+            console.log('HOC, an anonymous function, this =>', this);
+            return <HOC legend={this.state.legendHOC} />
+          }} />
           <Route path="/lifecycle" component={Lifecycle} />
           <Route path="/puritan" exact component={Puritan} />
           <Route path="/puritan/inner" component={Inner} />
