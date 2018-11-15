@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './sass/index.scss';
 import './sass/forms.scss';
 import LINKS from './links';
@@ -32,21 +32,24 @@ class App extends Component {
           <Navigation links={LINKS} />
         </nav>
         <main>
-          <Route path="/children" component={Children} />
-          <Route path="/context" component={Context} />
-          <Route path="/lazy" component={Lazy} />
-          <Route path="/HOCs" render={() => this.renderHOC('legendHOC')} />
-          <Route path="/lifecycle" component={Lifecycle} />
-          <Route path="/puritan" exact component={Puritan} />
-          <Route path="/puritan/inner" component={Inner} />
-          <Route path="/refs" component={Refs} />
-          <Route path="/routing" component={Routing} />
-          <Route path="/" exact render={() => (
-            <React.Fragment>
-              <h1>Yo, man!</h1>
-              <p>Homepage is here</p>
-            </React.Fragment>)
-          } />
+          <Switch>
+            <Route path="/children/hello" render={() => (<h1>Yo, i.e. -- Hello!</h1>)} />
+            <Route path="/children" component={Children} />
+            <Route path="/context" component={Context} />
+            <Route path="/lazy" component={Lazy} />
+            <Route path="/HOCs" render={() => this.renderHOC('legendHOC')} />
+            <Route path="/lifecycle" component={Lifecycle} />
+            <Route path="/puritan" exact component={Puritan} />
+            <Route path="/puritan/inner" component={Inner} />
+            <Route path="/refs" component={Refs} />
+            <Route path="/routing" component={Routing} />
+            <Route path="/" render={() => (
+              <React.Fragment>
+                <h1>Yo, man!</h1>
+                <p>Homepage is here</p>
+              </React.Fragment>)
+            } />
+          </Switch>
         </main>
       </React.Fragment>
     );
