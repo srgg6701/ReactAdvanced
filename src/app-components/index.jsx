@@ -39,7 +39,7 @@ class App extends Component {
             <Route path="/lazy" component={Lazy} />
             <Route path="/HOCs" render={() => {
               // no any props inside: 
-              return <HOC />
+              return <HOC {...props} />
             }
             } />
             <Route path="/lifecycle" component={Lifecycle} />
