@@ -6,14 +6,12 @@ const FieldsetHOCCommon = (ChildComponent, props, children) => {
             super(props);
             this.state = { hasError: false };
         }
-
         static getDerivedStateFromError(error) {
             // Update state so the next render will show the fallback UI.
             return { hasError: true };
         }
-
         render() {
-            console.log('%cFieldsetHOCCommon render...', 'color: violet', this, {props, children});
+            console.log('%cFieldsetHOCCommon render...', 'background-color: rgb(200,200,255)', this, {props, children});
             if (this.state.hasError) {
                 // You can render any custom fallback UI
                 return <h1>Something went wrong.</h1>;
@@ -21,7 +19,7 @@ const FieldsetHOCCommon = (ChildComponent, props, children) => {
             return (
                 <fieldset style={this.props.css || { color: this.props.color }}>
                     <legend>{props.legend || this.props.legend || 'No legend so far :('}</legend>
-                    <ChildComponent {...props}>{children}</ChildComponent>
+                    <ChildComponent {...this.props}>{children}</ChildComponent>
                 </fieldset>
             )
         }

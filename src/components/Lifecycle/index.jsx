@@ -8,19 +8,19 @@ import TablePure from '../Tables/TablePure'
 
 // https://learn-reactjs.ru/core/refs-and-the-dom
 export default class Lifecycle extends Component {
+    stateHTML = []
+    state = {
+        address: 'Unknown',
+        name: 'Nameless',
+        state_val: 'No any state value yet...' 
+    }
     constructor(props) {
         super(props)
-        this.state = {
-            address: 'Unknown',
-            name: 'Nameless',
-            state_val: 'No any state value yet...' 
-        }
         // this.name = "LifecycleComponent";
-        // output('lightskyblue', '1', 'constructor');
         this.FieldsetHOCCommon = HOCCommon(TableCommon, {
-            word: this.state.state_val,
+            word: this.state.state_val/* ,
             // passes current props
-            contents: this.outputState()
+            contents: this.outputState() */
         })
         this.FieldsetHOCPure = HOCPure(TablePure, {
             legend: 'Puritan here',
@@ -30,14 +30,15 @@ export default class Lifecycle extends Component {
             is not going to renender until state on prop is changed
         */
         // this.FieldsetHOC2 = () => <section>Nothing yet</section>;
+        this.outputState();
+        output('lightskyblue', '1', 'constructor', this);
     }
-    stateHTML = []
     /* static getDerivedStateFromProps(props, state){
         output('pink', '2', 'getDerivedStateFromProps: props, state =>', {props, state} );
         return null;
     } */
     componentDidMount() {
-        output('lightgreen', '3', 'componentDidMount');
+        //output('lightgreen', '3', 'componentDidMount');
         // this won't work as was intended. See note in constructor 
         /* this.FieldsetHOC2 = HOCCommon(TableCommon, {
             contents: this.state.pureContents ||'Fake contents for a canny component'
@@ -46,9 +47,9 @@ export default class Lifecycle extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         output('#ccc', '5', 'componentDidUpdate: prevProps, prevState, snapshot =>', { prevProps, prevState, snapshot });
     }
-    componentWillUnmount() {
+    /* componentWillUnmount() {
         output('orange', '6', 'componentWillUnmount');
-    }
+    } */
     outputState = () => {
         this.stateHTML = [];
         Object.entries(this.state).forEach((entry, index) => {
@@ -58,23 +59,21 @@ export default class Lifecycle extends Component {
                     <td>{entry[1]}</td>
                 </tr>)
         });
+        output('orange', '6', 'outputState, this.stateHTML =>', this.stateHTML);
         return this.stateHTML;
     }
     changeState = () => {
-        output('yellow', '7', 'changeState', {
-            this: this,
-            state_prop: this.refs.state_prop.value,
-            state_val: this.refs.state_val.value,
-            state_contents: this.refs.state_contents
-        });
-        this.setState({
+        this.setState(prevState => ({
             [this.refs.state_prop.value]: this.refs.state_val.value,
             pureContents: this.refs.state_contents.value
+        }), () => {
+            this.outputState();
+            output('yellow', '7', 'changeState');
         });
     }
 
     render() {
-        console.log('%cRendered!', 'color:orangered');
+        console.log('%cRendered!', 'color:orangered', this);
         return (
             <Fragment>
                 <div className="float-right display-flex" style={wrCss}>
@@ -83,7 +82,7 @@ export default class Lifecycle extends Component {
                             see child component passed to HOC;
                             notice, that props for it are passed via HOC argument
                         */}
-                        <this.FieldsetHOCCommon legend="Common. Current parent state" />
+                        <this.FieldsetHOCCommon contents={this.stateHTML} legend="Common. Current parent state" />
                         <br/>
                         <this.FieldsetHOCPure />
                         {this.FieldsetHOC2 && <this.FieldsetHOC2 />}

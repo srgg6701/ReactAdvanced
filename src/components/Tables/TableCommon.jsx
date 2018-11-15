@@ -17,7 +17,7 @@ export default class TableCommon extends React.Component {
         output('lime', '02', 'componentDidUpdate: props, state =>', {prevProps, prevState, currentProps: this.props, currentState:this.state, snapshot} );
     } */
     render() {
-        console.log('%c=| TableCommon is updated |=', 'color:violet');
+        console.log('%c=| TableCommon is updated |=%c this =>', 'color:violet', 'color: black', this);
         return (
             <table><tbody>{this.props.contents}</tbody></table>
         );
