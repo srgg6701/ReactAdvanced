@@ -6,9 +6,8 @@ export default (bgcolor, text1, text2, ob = null) => {
 
 const wrCss = {
         display: 'flex',
-        /* flexDirection: 'column', */
         float: 'right',
-        marginLeft: 40
+        maxWidth: '100%' 
     },
     formCss = {
         display: 'flex',

@@ -17,11 +17,7 @@ export default class Lifecycle extends Component {
     }
 
     stateHTML = []
-    /* OBSOLETE!
-    componentWillMount() {
-        console.log('componentWillMount');
-    } */
-
+    
     /* static getDerivedStateFromProps(props, state){
         output('pink', '2', 'getDerivedStateFromProps: props, state =>', {props, state} );
         return null;
@@ -30,16 +26,6 @@ export default class Lifecycle extends Component {
     componentDidMount() {
         output('lightgreen', '3', 'componentDidMount');
     }
-
-    /*  OBSOLETE!
-    componentWillReceiveProps(nextProps){
-        console.log('componentWillReceiveProps, got nextProps => ', nextProps);
-    } */
-
-    /* shouldComponentUpdate(nextProps, nextState) {
-        output('lime', '4', 'shouldComponentUpdate: nextProps, nextState =>', nextProps, nextState);
-        return false;
-    } */
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         output('#ccc', '5', 'componentDidUpdate: prevProps, prevState, snapshot =>', { prevProps, prevState, snapshot });
