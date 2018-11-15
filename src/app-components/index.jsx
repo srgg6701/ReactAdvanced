@@ -37,7 +37,11 @@ class App extends Component {
             <Route path="/children" component={Children} />
             <Route path="/context" component={Context} />
             <Route path="/lazy" component={Lazy} />
-            <Route path="/HOCs" render={() => this.renderHOC('legendHOC')} />
+            <Route path="/HOCs" render={props => {
+              console.log('%cprops', 'background:pink', props);
+              return <HOC {...props} />
+            }
+            } />
             <Route path="/lifecycle" component={Lifecycle} />
             <Route path="/puritan" exact component={Puritan} />
             <Route path="/puritan/inner" component={Inner} />

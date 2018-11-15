@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react'
 //<ChildComponent {...props}>{ children }</ChildComponent>
 export default class Textual extends Component {
     render() {
+        console.log('Textual this =>', this);
         return (
             <Fragment>
                 <div>My name is { this.props.name }</div>
