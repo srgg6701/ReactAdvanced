@@ -32,8 +32,8 @@ class App extends Component {
           <Route path="/children" component={Children} />
           <Route path="/context" component={Context} />
           <Route path="/lazy" component={Lazy} />
-          <Route path="/HOCs" render={() => {
-            console.log('HOC, an anonymous function, this =>', this);
+          <Route path="/HOCs" render={function(args){
+            console.log('HOC, an anonymous function, this =>', {this:this, args:args});
             return <HOC legend={this.state.legendHOC} />
           }} />
           <Route path="/lifecycle" component={Lifecycle} />
