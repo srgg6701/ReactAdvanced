@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, NavLink, Switch } from 'react-router-dom'
 import Fieldset from '../Fieldset'
+import './Routing.scss'
 
 const base = '/routing';
 

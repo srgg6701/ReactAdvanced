@@ -1,0 +1,12 @@
+a{
+    display: inline-block;
+    padding: 4px 8px;
+    text-decoration: none;
+    &:hover:not(.active){
+        text-decoration: underline;
+    }
+    &.active {
+        background-color: lightgreen;
+        cursor: default;
+    }
+}
