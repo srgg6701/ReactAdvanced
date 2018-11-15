@@ -30,7 +30,7 @@ class App extends Component {
           <Route path="/children" component={Children} />
           <Route path="/context" component={Context} />
           <Route path="/lazy" component={Lazy} />
-          <Route path="/HOCs" component={HOC} />
+          <Route path="/HOCs" render={() => <HOC legend="Rendered HOC" />} />
           <Route path="/lifecycle" component={Lifecycle} />
           <Route path="/puritan" exact component={Puritan} />
           <Route path="/puritan/inner" component={Inner} />
