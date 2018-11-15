@@ -5,7 +5,7 @@ const FieldsetHOCPure = (ChildComponent, props, children) => {
         render() {
             return (
                 <fieldset style={this.props.css || { color: this.props.color }}>
-                    <legend>{this.props.legend || 'No legend so far :('}</legend>
+                    <legend>{props.legend || this.props.legend || 'No legend so far :('}</legend>
                     <ChildComponent {...props}>{children}</ChildComponent>
                 </fieldset>
             )

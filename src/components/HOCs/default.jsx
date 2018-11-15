@@ -5,7 +5,7 @@ import FieldsetHOCPure from '../../HOCs/FieldsetHOCPure'
 //<ChildComponent {...props}>{ children }</ChildComponent>
 // exports component, wrappet in HOC
 const FieldsetHOCPureCalled = FieldsetHOCPure(Textual, {
-    name: "Strange fruit"/* ,
-    legend: 'Textual content!' */
+    name: "Strange fruit",
+    legend: 'Textual content!'
 }, <p>Yo! Children here.</p>);
 export {FieldsetHOCPureCalled}
